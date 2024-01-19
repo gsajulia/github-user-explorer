@@ -1,53 +1,48 @@
 import styles from "./Home.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SearchBar } from "../../components/SearchBar/SearchBar";
 import { getUserBySearch } from "../../services/users";
-import { IGithubUser } from "../../GlobalTypes";
+import { IGithubUser, IGithubUserApi } from "../../models/githubTypes";
+import { IApiResponse } from "../../models/base";
 import { UserInfo } from "../../components/UserInfo/UserInfo";
 import { UserStats } from "../../components/UserStats/UserStats";
+import useFetch from "../../hooks/useFetch";
 
 function Home() {
-  const [searchTerm, setSearchTerm] = useState<string>("");
+  const { data, error, setError, isLoading, sendRequest } =
+    useFetch<IApiResponse<IGithubUserApi>>();
   const [user, setUser] = useState<IGithubUser>();
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [searchTerm, setSearchTerm] = useState<string>("");
+
+  const transformApiResponseToGithubUser = (data: IGithubUserApi) => {
+    const {
+      node_id,
+      name,
+      avatar_url,
+      email,
+      location,
+      followers,
+      public_repos,
+    } = data;
+
+    return {
+      id: node_id,
+      name,
+      image: avatar_url,
+      email,
+      location,
+      followers,
+      publicRepos: public_repos,
+    };
+  };
 
   const handleSearch = async () => {
     if (!searchTerm.trim()) {
+      setUser(undefined);
       setError("Por favor, insira um termo de busca.");
       return;
     }
-    setIsLoading(true);
-    setError("");
-    try {
-      const result = await getUserBySearch(searchTerm);
-      const {
-        node_id,
-        name,
-        avatar_url,
-        email,
-        location,
-        followers,
-        public_repos,
-      } = result.data;
-
-      const githubUser = {
-        id: node_id,
-        name,
-        image: avatar_url,
-        email,
-        location,
-        followers,
-        publicRepos: public_repos,
-      };
-
-      setUser(githubUser);
-      setSearchTerm("");
-    } catch (err) {
-      setError("Erro ao realizar a busca.");
-    } finally {
-      setIsLoading(false);
-    }
+    await sendRequest(getUserBySearch, searchTerm);
   };
 
   const handleSearchTermChange = (
@@ -55,6 +50,14 @@ function Home() {
   ) => {
     setSearchTerm(event.target.value);
   };
+
+  useEffect(() => {
+    if (data) {
+      const githubUser = transformApiResponseToGithubUser(data.data);
+      setUser(githubUser);
+      setSearchTerm("");
+    }
+  }, [data]);
 
   return (
     <div className={styles.searchUserSection}>
@@ -64,25 +67,34 @@ function Home() {
         searchTerm={searchTerm}
         onSearchTermChange={handleSearchTermChange}
       />
-      <hr className={styles.firstSectionDivider} />
 
-      {user && (
-        <div className={styles.userSection}>
-          <UserInfo
-            image={user.image}
-            name={user.name}
-            email={user.email}
-            location={user.location}
-          />
-
-          <hr className={styles.secondSectionDivider} />
-
-          <UserStats
-            followers={user.followers}
-            repositories={user.publicRepos}
-          />
-        </div>
+      {user && !isLoading && !error && (
+        <hr className={styles.firstSectionDivider} />
       )}
+
+      <div className={styles.userSection}>
+        {isLoading && <div> Loading...</div>}
+
+        {error && <div> {error} </div>}
+
+        {user && (
+          <>
+            <UserInfo
+              image={user.image}
+              name={user.name}
+              email={user.email}
+              location={user.location}
+            />
+
+            <hr className={styles.secondSectionDivider} />
+
+            <UserStats
+              followers={user.followers}
+              repositories={user.publicRepos}
+            />
+          </>
+        )}
+      </div>
     </div>
   );
 }
