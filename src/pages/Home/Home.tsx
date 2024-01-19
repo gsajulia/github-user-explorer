@@ -8,6 +8,17 @@ import UserInfo from "../../components/UserInfo/UserInfo";
 import UserStats from "../../components/UserStats/UserStats";
 import useFetch from "../../hooks/useFetch";
 
+function calculatePopularityScore(followers: number, repositories: number) {
+  const score = [];
+  score.push(followers >= 10 && repositories >= 8 ? 1 : 0);
+  score.push(followers >= 7 && repositories >= 7 ? 1 : 0);
+  score.push(followers >= 5 && repositories >= 5 ? 1 : 0);
+  score.push(followers >= 3 && repositories >= 3 ? 1 : 0);
+  score.push(followers >= 1 && repositories >= 1 ? 1 : 0);
+
+  return score;
+}
+
 function Home() {
   const { data, error, setError, isLoading, sendRequest } =
     useFetch<IApiResponse<IGithubUserApi>>();
@@ -91,6 +102,10 @@ function Home() {
             <UserStats
               followers={user.followers}
               repositories={user.publicRepos}
+              popularityScore={calculatePopularityScore(
+                user.followers,
+                user.publicRepos
+              )}
             />
           </>
         )}
