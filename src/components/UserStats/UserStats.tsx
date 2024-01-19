@@ -2,20 +2,21 @@ import styles from "./UserStats.module.css";
 import { IUserStats } from "./UserStats.type";
 import star from "../../assets/star.png";
 import starNotFilled from "../../assets/starNotFilled.png";
-import { useMemo } from "react";
 
-export const UserStats = ({ followers, repositories }: IUserStats) => {
-  const popularityScore = useMemo(() => {
-    const score: number[] = [];
+function calculatePopularityScore(followers: number, repositories: number) {
+  const score = [];
 
-    score.push(followers >= 10 && repositories >= 8 ? 1 : 0);
-    score.push(followers >= 7 && repositories >= 7 ? 1 : 0);
-    score.push(followers >= 5 && repositories >= 5 ? 1 : 0);
-    score.push(followers >= 3 && repositories >= 3 ? 1 : 0);
-    score.push(followers >= 1 && repositories >= 1 ? 1 : 0);
+  score.push(followers >= 10 && repositories >= 8 ? 1 : 0);
+  score.push(followers >= 7 && repositories >= 7 ? 1 : 0);
+  score.push(followers >= 5 && repositories >= 5 ? 1 : 0);
+  score.push(followers >= 3 && repositories >= 3 ? 1 : 0);
+  score.push(followers >= 1 && repositories >= 1 ? 1 : 0);
 
-    return score;
-  }, [followers, repositories]);
+  return score;
+}
+
+const UserStats = ({ followers, repositories }: IUserStats) => {
+  const popularityScore = calculatePopularityScore(followers, repositories);
 
   return (
     <section className={styles.userStats}>
@@ -33,7 +34,7 @@ export const UserStats = ({ followers, repositories }: IUserStats) => {
               {rating === 1 ? (
                 <img className={styles.popularityIcon} src={star} />
               ) : (
-                <img src={starNotFilled} />
+                <img className={styles.popularityIcon} src={starNotFilled} />
               )}
             </span>
           ))}
@@ -42,3 +43,5 @@ export const UserStats = ({ followers, repositories }: IUserStats) => {
     </section>
   );
 };
+
+export default UserStats;

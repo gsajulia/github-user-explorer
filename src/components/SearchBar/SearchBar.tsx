@@ -3,7 +3,7 @@ import Input from "../Input/Input";
 import Button from "../Button/Button";
 import { ISearchBar } from "./SearchBar.types";
 
-export const SearchBar = ({
+const SearchBar = ({
   searchTerm,
   onSearchTermChange,
   onSearch,
@@ -24,3 +24,5 @@ export const SearchBar = ({
     </div>
   );
 };
+
+export default SearchBar;

@@ -43,3 +43,9 @@ Para instalar o projeto, siga estes passos:
    ```bash
    npm run dev
    ```
+
+4. Running cypress tests
+
+   ```bash
+   npx cypress open
+   ```

@@ -1,7 +1,7 @@
 import styles from "./UserInfo.module.css";
 import { IUserInfo } from "./UserInfo.types";
 
-export const UserInfo = ({ image, name, email, location }: IUserInfo) => {
+const UserInfo = ({ image, name, email, location }: IUserInfo) => {
   return (
     <section className={styles.userInfo}>
       <img className={styles.userImage} src={image} />
@@ -11,3 +11,5 @@ export const UserInfo = ({ image, name, email, location }: IUserInfo) => {
     </section>
   );
 };
+
+export default UserInfo;

@@ -6,11 +6,12 @@ const Input = ({
   onChange,
   placeholder,
   type = "text",
-  className,
+  className = "",
   ...props
 }: IInput) => {
   return (
     <input
+      id={id}
       className={`${styles.input} ${className}`}
       type={type}
       value={value}
