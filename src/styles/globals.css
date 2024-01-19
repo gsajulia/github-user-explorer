@@ -1,0 +1,15 @@
+:root {
+  --off-black: #242424;  
+  --white: #fff;  
+  --white-smoke: #F5F5F5;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: var(--off-black);
+  background-color: var(--white);
+}
+
+label {
+  margin-bottom: 5px;
+}

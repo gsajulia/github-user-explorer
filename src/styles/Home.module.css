@@ -1,0 +1,51 @@
+.searchUserSection {
+  margin: 0 auto;
+  max-width: 50vw;
+}
+
+.userSection {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 1rem;
+  margin: 3vw 4vw;
+}
+
+.firstSectionDivider {
+  border: none;
+  height: 1px;
+  background:  var(--off-black);
+  margin: 20px 0;
+}
+
+.secondSectionDivider {
+  border-left: 1px solid var(--off-black);
+  margin: 0 20px;
+  height: auto;
+}
+
+.homeTitle {
+  text-align: center;
+}
+
+@media screen and (max-width: 1200px) {
+  .searchUserSection {
+      max-width: 90vw;
+  }
+}
+
+@media screen and (max-width: 728px) {
+  .userSection  {
+      flex-direction: column;
+      margin: 3vw 0;
+  }
+
+  .secondSectionDivider {
+      border: none;
+      height: 1px;
+      background:  var(--off-black);
+      margin: 20px 0;
+  }
+}
+
+

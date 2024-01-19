@@ -4,11 +4,6 @@
     gap: 2rem;
 }
 
-.popularityIcon {
-    width: 20px;
-    height: 20px;
-}
-
 .userStat {
     display: flex;
     gap: 1rem;

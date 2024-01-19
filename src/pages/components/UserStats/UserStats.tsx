@@ -1,7 +1,6 @@
 import styles from "./UserStats.module.css";
 import { IUserStats } from "./UserStats.type";
-import star from "../../assets/star.png";
-import starNotFilled from "../../assets/starNotFilled.png";
+import Image from "next/image";
 
 const UserStats = ({
   followers,
@@ -22,9 +21,19 @@ const UserStats = ({
           {popularityScore.map((rating, index) => (
             <span key={index}>
               {rating === 1 ? (
-                <img className={styles.popularityIcon} src={star} />
+                <Image
+                  src="/star.png"
+                  alt="Minha Imagem"
+                  width={20}
+                  height={20}
+                />
               ) : (
-                <img className={styles.popularityIcon} src={starNotFilled} />
+                <Image
+                  src="/starNotFilled.png"
+                  alt="Minha Imagem"
+                  width={20}
+                  height={20}
+                />
               )}
             </span>
           ))}

@@ -1,4 +1,4 @@
-import { baseUrl } from "../../../src/services/users";
+import { baseUrl } from "../../../src/pages/services/users";
 
 describe('getUserBySearch Integration Test', () => {
     it('fetches user data from GitHub API', () => {
