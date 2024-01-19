@@ -1,6 +1,7 @@
 .userStats {
     display: flex;
     flex-direction: column;
+    gap: 2rem;
 }
 
 .popularityIcon {
@@ -20,11 +21,11 @@
 .popularitySection {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 2rem;
     font-weight: 600;
 }
 
 .popularityIconsSection {
     display: flex;
-    gap: 1rem;
+    gap: 2rem;
 }

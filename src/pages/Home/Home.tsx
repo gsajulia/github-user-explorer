@@ -58,23 +58,30 @@ function Home() {
 
   return (
     <div className={styles.searchUserSection}>
-      <h2>SEARCH GITHUB USERS</h2>
+      <h2 className={styles.homeTitle}>SEARCH GITHUB USERS</h2>
       <SearchBar
         onSearch={handleSearch}
         searchTerm={searchTerm}
         onSearchTermChange={handleSearchTermChange}
       />
-      {user && (
-        <UserInfo
-          image={user.image}
-          name={user.name}
-          email={user.email}
-          location={user.location}
-        />
-      )}
+      <hr className={styles.firstSectionDivider} />
 
       {user && (
-        <UserStats followers={user.followers} repositories={user.publicRepos} />
+        <div className={styles.userSection}>
+          <UserInfo
+            image={user.image}
+            name={user.name}
+            email={user.email}
+            location={user.location}
+          />
+
+          <hr className={styles.secondSectionDivider} />
+
+          <UserStats
+            followers={user.followers}
+            repositories={user.publicRepos}
+          />
+        </div>
       )}
     </div>
   );
