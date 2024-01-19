@@ -4,6 +4,7 @@ import { SearchBar } from "../../components/SearchBar/SearchBar";
 import { getUserBySearch } from "../../services/users";
 import { IGithubUser } from "../../GlobalTypes";
 import { UserInfo } from "../../components/UserInfo/UserInfo";
+import { UserStats } from "../../components/UserStats/UserStats";
 
 function Home() {
   const [searchTerm, setSearchTerm] = useState<string>("");
@@ -65,11 +66,15 @@ function Home() {
       />
       {user && (
         <UserInfo
-          image={user?.image}
-          name={user?.name}
-          email={user?.email}
-          location={user?.location}
+          image={user.image}
+          name={user.name}
+          email={user.email}
+          location={user.location}
         />
+      )}
+
+      {user && (
+        <UserStats followers={user.followers} repositories={user.publicRepos} />
       )}
     </div>
   );
