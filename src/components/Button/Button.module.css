@@ -1,0 +1,15 @@
+.button {
+    padding: 0.6rem 1rem;
+    background-color: var(--white);
+    color: var(--off-black);
+    border: none;
+    border: 1px solid var(--off-black);
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.button:hover,
+.button:focus {
+    background-color: var(--white-smoke);
+}
