@@ -37,8 +37,8 @@ function Home() {
   };
 
   const handleSearch = async () => {
+    setUser(undefined);
     if (!searchTerm.trim()) {
-      setUser(undefined);
       setError("Por favor, insira um termo de busca.");
       return;
     }

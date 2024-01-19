@@ -20,7 +20,7 @@ function useFetch<T>(): ApiRequestHook<T> {
       const response = await requestFn(...args);
       setData(response);
     } catch (error: any) {
-      setError('Erro ao realizar a busca.');
+      setError('Algo deu errado, tente novamente.');
     } finally {
       setIsLoading(false);
     }
