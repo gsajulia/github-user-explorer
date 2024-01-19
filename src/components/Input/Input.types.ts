@@ -1,4 +1,4 @@
-interface IInput {
+export interface IInput {
     id: string;
     value?: string;
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;

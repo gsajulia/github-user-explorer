@@ -1,4 +1,5 @@
 import styles from "./Input.module.css";
+import { IInput } from "./Input.types";
 
 const Input = ({
   id,

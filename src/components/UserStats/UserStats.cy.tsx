@@ -8,8 +8,15 @@ describe("<UserStats />", () => {
   it("renders with provided props", () => {
     const followers = 10;
     const repositories = 8;
+    const popularityScore = [1, 1, 1, 1, 1];
 
-    cy.mount(<UserStats followers={followers} repositories={repositories} />);
+    cy.mount(
+      <UserStats
+        followers={followers}
+        repositories={repositories}
+        popularityScore={popularityScore}
+      />
+    );
 
     cy.get(`.${styles.userStats}`).should("exist");
 
@@ -20,7 +27,7 @@ describe("<UserStats />", () => {
 
     cy.get(`.${styles.popularityIcon}`).should("have.length", 5);
 
-    cy.wrap([true, true, true, true, true]).each((score, index) => {
+    cy.wrap(popularityScore).each((score, index) => {
       if (score) {
         cy.get(`.${styles.popularityIcon}`)
           .eq(index)

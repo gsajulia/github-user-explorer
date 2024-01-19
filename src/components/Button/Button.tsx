@@ -1,5 +1,5 @@
 import styles from "./Button.module.css";
-
+import { IButton } from "./Button.types";
 const Button = ({
   children,
   onClick,
