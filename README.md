@@ -4,6 +4,10 @@
 
 Este projeto é uma aplicação React que permite aos usuários pesquisar perfis de usuários no GitHub. Ele oferece uma interface simples para inserir um termo de busca e exibir os resultados correspondentes.
 
+[Acesse o projeto - Github user explorer](https://github-user-explorer-olive.vercel.app/)
+
+![Imagem do projeto](./public/project.png)
+
 ## Recursos
 
 - Pesquisa de usuários do GitHub.
