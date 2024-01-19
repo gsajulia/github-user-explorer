@@ -3,6 +3,7 @@ import { useState } from "react";
 import { SearchBar } from "../../components/SearchBar/SearchBar";
 import { getUserBySearch } from "../../services/users";
 import { IGithubUser } from "../../GlobalTypes";
+import { UserInfo } from "../../components/UserInfo/UserInfo";
 
 function Home() {
   const [searchTerm, setSearchTerm] = useState<string>("");
@@ -19,12 +20,24 @@ function Home() {
     setError("");
     try {
       const result = await getUserBySearch(searchTerm);
+      const {
+        node_id,
+        name,
+        avatar_url,
+        email,
+        location,
+        followers,
+        public_repos,
+      } = result.data;
 
       const githubUser = {
-        id: result.data.node_id,
-        name: result.data.name,
-        description: result.data.bio,
-        img: result.data.avatar_url,
+        id: node_id,
+        name,
+        image: avatar_url,
+        email,
+        location,
+        followers,
+        publicRepos: public_repos,
       };
 
       setUser(githubUser);
@@ -50,6 +63,14 @@ function Home() {
         searchTerm={searchTerm}
         onSearchTermChange={handleSearchTermChange}
       />
+      {user && (
+        <UserInfo
+          image={user?.image}
+          name={user?.name}
+          email={user?.email}
+          location={user?.location}
+        />
+      )}
     </div>
   );
 }

@@ -1,6 +1,9 @@
 export interface IGithubUser {
     name: string;
-    description: string;
-    img: string;
+    image: string;
     id: string;
+    email: string;
+    location: string;
+    followers: number;
+    publicRepos: number;
 }
