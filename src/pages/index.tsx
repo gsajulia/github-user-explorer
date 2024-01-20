@@ -1,12 +1,12 @@
 import styles from "@/styles/Home.module.css";
 import { useEffect, useState } from "react";
-import SearchBar from "./components/SearchBar/SearchBar";
-import { getUserBySearch } from "./services/users";
-import { IGithubUser, IGithubUserApi } from "./models/githubTypes";
-import { IApiResponse } from "./models/base";
-import UserInfo from "./components/UserInfo/UserInfo";
-import UserStats from "./components/UserStats/UserStats";
-import useFetch from "./hooks/useFetch";
+import SearchBar from "../components/SearchBar/SearchBar";
+import { getUserBySearch } from "../services/users";
+import { IGithubUser, IGithubUserApi } from "../models/githubTypes";
+import { IApiResponse } from "../models/base";
+import UserInfo from "../components/UserInfo/UserInfo";
+import UserStats from "../components/UserStats/UserStats";
+import useFetch from "../hooks/useFetch";
 
 function calculatePopularityScore(followers: number, repositories: number) {
   const score = [];
