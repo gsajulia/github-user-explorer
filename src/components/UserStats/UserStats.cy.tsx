@@ -1,9 +1,6 @@
 /// <reference types="cypress" />
 import UserStats from "./UserStats";
 import styles from "./UserStats.module.css";
-import star from "../../../public/star.png";
-import starNotFilled from "../../../public/starNotFilled.png";
-import Image from "next/image";
 
 describe("<UserStats />", () => {
   it("renders with provided props", () => {
