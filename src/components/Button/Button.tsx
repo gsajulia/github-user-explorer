@@ -4,14 +4,13 @@ const Button = ({
   children,
   onClick,
   type = "button",
-  className = "",
   disabled = false,
   ...props
 }: IButton) => {
   return (
     <button
       type={type}
-      className={`${styles.button} ${className}`}
+      className={`${styles.button}`}
       onClick={onClick}
       disabled={disabled}
       {...props}

@@ -1,5 +1,5 @@
 import styles from "@/styles/Home.module.css";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import SearchBar from "../components/SearchBar/SearchBar";
 import { getUserBySearch } from "../services/users";
 import { IGithubUser, IGithubUserApi } from "../models/githubTypes";
@@ -7,17 +7,7 @@ import { IApiResponse } from "../models/base";
 import UserInfo from "../components/UserInfo/UserInfo";
 import UserStats from "../components/UserStats/UserStats";
 import useFetch from "../hooks/useFetch";
-
-function calculatePopularityScore(followers: number, repositories: number) {
-  const score = [];
-  score.push(followers >= 10 && repositories >= 8 ? 1 : 0);
-  score.push(followers >= 7 && repositories >= 7 ? 1 : 0);
-  score.push(followers >= 5 && repositories >= 5 ? 1 : 0);
-  score.push(followers >= 3 && repositories >= 3 ? 1 : 0);
-  score.push(followers >= 1 && repositories >= 1 ? 1 : 0);
-
-  return score;
-}
+import Spinner from "@/components/Spinner/Spinner";
 
 function Home() {
   const { data, error, setError, isLoading, sendRequest } =
@@ -70,6 +60,18 @@ function Home() {
     }
   }, [data]);
 
+  const popularityStars = useMemo(() => {
+    const score = [];
+    if (user) {
+      score.push(user.followers >= 10 && user.publicRepos >= 8 ? 1 : 0);
+      score.push(user.followers >= 7 && user.publicRepos >= 7 ? 1 : 0);
+      score.push(user.followers >= 5 && user.publicRepos >= 5 ? 1 : 0);
+      score.push(user.followers >= 3 && user.publicRepos >= 3 ? 1 : 0);
+      score.push(user.followers >= 1 && user.publicRepos >= 1 ? 1 : 0);
+    }
+    return score;
+  }, [user]);
+
   return (
     <div className={styles.searchUserSection}>
       <h2 className={styles.homeTitle}>SEARCH GITHUB USERS</h2>
@@ -83,9 +85,13 @@ function Home() {
         <hr className={styles.firstSectionDivider} />
       )}
 
-      <div className={styles.userSection}>
-        {isLoading && <div> Loading...</div>}
+      {isLoading && (
+        <div className={styles.statusContainer}>
+          <Spinner />
+        </div>
+      )}
 
+      <div className={styles.userSection}>
         {error && <div> {error} </div>}
 
         {user && (
@@ -102,10 +108,7 @@ function Home() {
             <UserStats
               followers={user.followers}
               repositories={user.publicRepos}
-              popularityScore={calculatePopularityScore(
-                user.followers,
-                user.publicRepos
-              )}
+              popularityScore={popularityStars}
             />
           </>
         )}

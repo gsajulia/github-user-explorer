@@ -1,3 +1,9 @@
+.statusContainer {
+  display: flex;
+  justify-content: center;
+  padding: 5vw 0;
+}
+
 .searchUserSection {
   margin: 0 auto;
   max-width: 50vw;

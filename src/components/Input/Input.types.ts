@@ -4,5 +4,4 @@ export interface IInput {
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
     placeholder?: string;
     type?: string;
-    className?: string;
   };

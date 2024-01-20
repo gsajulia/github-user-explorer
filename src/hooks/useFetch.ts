@@ -5,7 +5,7 @@ interface ApiRequestHook<T> {
   error: string;
   isLoading: boolean;
   setError: React.Dispatch<React.SetStateAction<string>>;
-  sendRequest: (requestFn: (...args: any[]) => Promise<T>, ...args: any[]) => Promise<void>;
+  sendRequest: <A, R>(requestFn: (...args: A[]) => Promise<R>, ...args: A[]) => Promise<void>;
 }
 
 function useFetch<T>(): ApiRequestHook<T> {
@@ -13,12 +13,12 @@ function useFetch<T>(): ApiRequestHook<T> {
   const [error, setError] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const sendRequest = async (requestFn: (...args: any[]) => Promise<T>, ...args: any[]) => {
+  const sendRequest = async <A, R>(requestFn: (...args: A[]) => Promise<R>, ...args: A[]) => {
     setIsLoading(true);
     setError('');
     try {
       const response = await requestFn(...args);
-      setData(response);
+      setData(response as unknown as T);
     } catch (error: any) {
       setError('Algo deu errado, tente novamente.');
     } finally {

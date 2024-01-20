@@ -7,20 +7,17 @@ const Input = ({
   onChange,
   placeholder,
   type = "text",
-  className = "",
   ...props
-}: IInput) => {
-  return (
-    <input
-      id={id}
-      className={`${styles.input} ${className}`}
-      type={type}
-      value={value}
-      onChange={onChange}
-      placeholder={placeholder}
-      {...props}
-    />
-  );
-};
+}: IInput) => (
+  <input
+    id={id}
+    className={`${styles.input}`}
+    type={type}
+    value={value}
+    onChange={onChange}
+    placeholder={placeholder}
+    {...props}
+  />
+);
 
 export default Input;
