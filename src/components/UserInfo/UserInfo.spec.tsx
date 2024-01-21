@@ -7,6 +7,7 @@ describe("UserInfo Component", () => {
     name: "Jessie",
     email: "jessie@example.com",
     location: "New York, NY",
+    githubUrl: "https://github.com/jessie",
   };
 
   it("should display user information correctly", () => {

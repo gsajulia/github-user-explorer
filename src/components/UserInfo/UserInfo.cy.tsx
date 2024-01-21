@@ -8,6 +8,7 @@ describe("<UserInfo />", () => {
     name: "Filomena",
     email: "filomena@example.com",
     location: "São Paulo, BR",
+    githubUrl: "https://github.com/jessie",
   };
 
   it("renders correctly with given props", () => {
