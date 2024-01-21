@@ -11,3 +11,10 @@
     gap: 2rem;
     margin: 6vw 6vw 4vw 6vw;
 }
+
+@media screen and (max-width: 728px) {
+    .searchForm  {
+        gap: 0;
+    }
+  
+  }
