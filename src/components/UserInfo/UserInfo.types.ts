@@ -3,4 +3,5 @@ export interface IUserInfo {
     name: string;
     email: string; 
     location: string;
+    githubUrl: string;
 }

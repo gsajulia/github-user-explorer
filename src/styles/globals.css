@@ -13,3 +13,8 @@ body {
 label {
   margin-bottom: 5px;
 }
+
+a {
+  color: var(--off-black);
+  text-decoration: none;
+}

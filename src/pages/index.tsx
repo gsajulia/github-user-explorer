@@ -24,6 +24,7 @@ function Home() {
       location,
       followers,
       public_repos,
+      html_url,
     } = data;
 
     return {
@@ -34,6 +35,7 @@ function Home() {
       location,
       followers,
       publicRepos: public_repos,
+      githubUrl: html_url,
     };
   };
 
@@ -101,6 +103,7 @@ function Home() {
               name={user.name}
               email={user.email}
               location={user.location}
+              githubUrl={user.githubUrl}
             />
 
             <hr className={styles.secondSectionDivider} />

@@ -6,6 +6,7 @@ export interface IGithubUser {
     location: string;
     followers: number;
     publicRepos: number;
+    githubUrl: string;
 }
 
 export interface IGithubUserApi {
@@ -16,4 +17,5 @@ export interface IGithubUserApi {
     location: string;
     followers: number;
     public_repos: number;
+    html_url: string;
 }
