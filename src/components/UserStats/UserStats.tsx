@@ -17,20 +17,29 @@ const UserStats = ({
     <div className={styles.popularitySection}>
       <span>Popularity</span>
       <div className={styles.popularityIconsSection}>
-        {popularityScore.map((rating, index) => (
-          <span key={index}>
-            {rating === 1 ? (
-              <Image src="/star.png" alt="Star icon" width={20} height={20} />
-            ) : (
-              <Image
-                src="/starNotFilled.png"
-                alt="Star not filled icon"
-                width={20}
-                height={20}
-              />
-            )}
-          </span>
-        ))}
+        {popularityScore === null ? (
+          <Image
+            src="/starHalfEmpty.png"
+            alt="Half Star icon"
+            width={20}
+            height={20}
+          />
+        ) : (
+          popularityScore.map((rating, index) => (
+            <span key={index}>
+              {rating === 1 ? (
+                <Image src="/star.png" alt="Star icon" width={20} height={20} />
+              ) : (
+                <Image
+                  src="/starNotFilled.png"
+                  alt="Star not filled icon"
+                  width={20}
+                  height={20}
+                />
+              )}
+            </span>
+          ))
+        )}
       </div>
     </div>
   </section>

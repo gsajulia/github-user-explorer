@@ -8,6 +8,7 @@ import UserInfo from "../components/UserInfo/UserInfo";
 import UserStats from "../components/UserStats/UserStats";
 import useFetch from "../hooks/useFetch";
 import Spinner from "@/components/Spinner/Spinner";
+import { calculatePopularityScore } from "@/utils/popularityScore";
 
 function Home() {
   const { data, error, setError, isLoading, sendRequest } =
@@ -63,15 +64,10 @@ function Home() {
   }, [data]);
 
   const popularityStars = useMemo(() => {
-    const score = [];
-    if (user) {
-      score.push(user.followers >= 10 && user.publicRepos >= 8 ? 1 : 0);
-      score.push(user.followers >= 7 && user.publicRepos >= 7 ? 1 : 0);
-      score.push(user.followers >= 5 && user.publicRepos >= 5 ? 1 : 0);
-      score.push(user.followers >= 3 && user.publicRepos >= 3 ? 1 : 0);
-      score.push(user.followers >= 1 && user.publicRepos >= 1 ? 1 : 0);
-    }
-    return score;
+    return calculatePopularityScore(
+      user?.followers ?? 0,
+      user?.publicRepos ?? 0
+    );
   }, [user]);
 
   return (
