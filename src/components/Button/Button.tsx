@@ -9,6 +9,7 @@ const Button = ({
 }: IButton) => {
   return (
     <button
+      data-testid="component-button"
       type={type}
       className={`${styles.button}`}
       onClick={onClick}

@@ -11,6 +11,7 @@ const Input = ({
 }: IInput) => (
   <input
     id={id}
+    data-testid={id}
     className={`${styles.input}`}
     type={type}
     value={value}

@@ -1,7 +1,7 @@
-import { baseUrl } from "../../../src/pages/services/users";
+import { baseUrl } from "../../../src/services/users";
 
 describe('getUserBySearch Error Handling', () => {
-  it('handles search input with no result', () => {
+  it('handles github search input with no result', () => {
     cy.request({
       method: 'GET',
       url: `${baseUrl}/users/`,

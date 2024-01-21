@@ -26,7 +26,6 @@ describe("<Input />", () => {
         expect($input.val()).to.equal(typedText);
       });
 
-    cy.wait(1000);
     cy.get("@onChangeSpy").should("have.been.called");
   });
 });

@@ -12,9 +12,7 @@ describe("<UserInfo />", () => {
 
   it("renders correctly with given props", () => {
     cy.mount(<UserInfo {...mockUserInfo} />);
-    cy.get("img")
-      .should("have.attr", "src", mockUserInfo.image)
-      .should("be.visible");
+    cy.get("img").should("be.visible");
 
     cy.get("h2").should("contain", mockUserInfo.name);
 

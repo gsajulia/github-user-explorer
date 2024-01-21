@@ -4,7 +4,7 @@
 
 Este projeto é uma aplicação React que permite aos usuários pesquisar perfis de usuários no GitHub. Ele oferece uma interface simples para inserir um termo de busca e exibir os resultados correspondentes.
 
-[Acesse o projeto - Github user explorer](https://github-user-explorer-olive.vercel.app/)
+[Acesse o projeto - Github user explorer](https://github-user-explorer-plum.vercel.app/)
 
 ![Imagem do projeto](./public/project.png)
 
@@ -44,8 +44,14 @@ Para instalar o projeto, siga estes passos:
    npm run dev
    ```
 
-4. Running cypress tests
+4. Comando para rodar testes de componente e integração no cypress
 
    ```bash
    npx cypress open
+   ```
+
+5. Comando para rodar testes unitários com react testing library
+
+   ```bash
+   npm run test
    ```
