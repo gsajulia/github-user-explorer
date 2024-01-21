@@ -21,6 +21,16 @@ Este projeto é uma aplicação React que permite aos usuários pesquisar perfis
 - React
 - TypeScript
 - CSS Modules
+- React testing library
+- Jest
+- Cypress
+- Next
+
+# Testes
+- Unitários
+- Integração
+- E2E
+- Componente
 
 ## Instalação
 
